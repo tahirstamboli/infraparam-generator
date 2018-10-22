@@ -14,3 +14,4 @@ Use following command to run utility jar
 ```
 java -jar infraparam-generator-0.0.1.jar --tfstate-file-path=/tmp/terraform.tfstate --infraparam-output-path=/tmp
 ```
+After successful execution of above command **infraParam.json** file is generated at --infraparam-output-path
