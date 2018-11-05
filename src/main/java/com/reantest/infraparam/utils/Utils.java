@@ -103,4 +103,31 @@ public class Utils {
 		}
 		return null;
 	}
+
+	public static Object parseBoolean(Object value) {
+		if (value instanceof Boolean) {
+			value = (Boolean) value;
+		} else if (value instanceof String) {
+			String v = (String) value;
+			if ("true".equalsIgnoreCase(v) || "false".equalsIgnoreCase(v)) {
+				value = Boolean.parseBoolean(v);
+			}
+		}
+		return value;
+	}
+
+	public static Object parseNumber(Object value) {
+		if (value instanceof Long) {
+			value = (Long) value;
+		} else if (value instanceof String) {
+			String v = (String) value;
+			try {
+				Long parseLong = Long.parseLong(v);
+				value = parseLong;
+			} catch (NumberFormatException e) {
+
+			}
+		}
+		return value;
+	}
 }

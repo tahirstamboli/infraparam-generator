@@ -3,6 +3,8 @@ package com.reantest.infraparam.models;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.reantest.infraparam.utils.Utils;
+
 public class TFResource {
 	String name;
 	String type;
@@ -54,6 +56,21 @@ public class TFResource {
 	public void addAttribute(String key, Object value) {
 		if (attributes == null) {
 			attributes = new HashMap<String, Object>();
+		}
+		if (value != null) {
+			Object parseBoolean = Utils.parseBoolean(value);
+			if (parseBoolean instanceof Boolean) {
+				value = (Boolean) parseBoolean;
+			} else {
+				Object parseNumber = Utils.parseNumber(value);
+				if (parseNumber instanceof Long) {
+					value = (Long) parseNumber;
+				} else if (value instanceof String) {
+					value = (String) value;
+					if (((String) value).isEmpty())
+						value = null;
+				}
+			}
 		}
 		attributes.put(key, value);
 	}
